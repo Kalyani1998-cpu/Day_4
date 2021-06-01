@@ -1,0 +1,444 @@
+1.Method Overloading
+A. Sum
+    class Program
+    {
+        int a = 6, b = 7;
+        public void Sum()
+        {
+            Console.WriteLine("Sum is :" + (a + b));
+        }
+        public void Sum (int a, int b)
+        {
+            Console.WriteLine("Sum is :" + (a + b));
+        }
+        public int Sum(int a, int b,int c)
+        {
+            return (a + b);
+        }
+        public void Sum(string a, string b)
+        {
+            Console.WriteLine("Sum is :" + (Convert.ToInt32(a) + Convert.ToInt32(b)));
+        }
+        static void Main(string[] args)
+        {
+            Program p = new Program();
+            p.Sum();
+            p.Sum(1,2);
+            Console.WriteLine(p.Sum(1, 2, 3));
+            p.Sum();
+            Console.ReadLine();
+        }
+    }
+-----------------------------
+B.Multiplication
+class Program
+    {
+        int a = 64, b = 72;
+	public void Mul()
+        {
+            Console.WriteLine("Multiplication  is :" + (a * b));
+        }
+        public void Mul(int a, int b)
+        {
+            Console.WriteLine("Multiplication is :" + (a * b));
+        }
+        public int Mul(int a, int b, int c)
+        {
+            return (a * b);
+        }
+        public void Sum(string a, string b)
+        {
+            Console.WriteLine("Multiplication is :" + (Convert.ToInt32(a) + Convert.ToInt32(b)));
+        }
+        static void Main(string[] args)
+        {
+            Program p = new Program();
+            p.Mul();
+            p.Mul(1, 2);
+            Console.WriteLine(p.Mul(1, 2, 3));
+            p.Mul();
+            Console.ReadLine();
+        }
+    }
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2.Operator Overloading
+A. Sum
+class Sum
+    {
+        public int num1, num2;
+        public Sum(int num1,int num2)
+        {
+            this.num1 = num1;
+            this.num1 = num2;
+        }
+        public static Sum operator +(Sum s1, Sum s2)
+        {
+            Sum s3 = new Sum(0, 0);
+            s3.num1 = s1.num1 + s2.num2;
+            s3.num2 = s1.num2 + s2.num2;
+            return s3;
+        }
+    }
+    class Class1
+    {
+        public static void Main()
+        {
+            Sum s1 = new Sum(1,2);
+            Sum s2 = new Sum(2,2);
+            Sum s3 = new Sum(0,0);
+            Console.WriteLine("Values before sum Number 1:" + s3.num1 + " Number 2:" + s3.num2);
+            s3 = s1 + s2;
+            Console.WriteLine("Values after sum Number 1:" +s3.num1+ " Number 2:" +s3.num2);
+            Console.ReadLine();
+
+        }
+    }
+---------------------------------------------
+B. Multiplication
+public class mul
+{
+   public int num1,num2;
+	public  mul(int num1,int num2)
+	{
+		this.num1=num1;
+		this.num2=num2;
+	}
+	public static mul operator*(mul s1,mul s2)
+	{
+		mul s3=new mul(0,0);
+		s3.num1=s1.num1*s2.num1;
+		s3.num2=s1.num2*s2.num2;
+		return s3;
+	}
+}
+		public class Program
+		{
+	public static void Main()
+	{
+		mul s1=new mul(24,8);
+		mul s2=new mul(2,67);
+		mul s3=new mul(0,0);
+		s3=s1*s2;
+		Console.WriteLine("values after multi num 1: "+s3.num1+" || num 2: "+s3.num2);
+	}	
+		}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3.
+class BaseClass
+    { 
+        public virtual void Print()
+        {
+        Console.WriteLine("Hi I am Base class");
+        }
+    }
+    class DerivedClass:BaseClass
+    {        
+        public override void Print()
+        {
+            Console.WriteLine("Hi I am Derived class");
+        }
+    }
+    class Class2
+    {
+        public static void Main()
+        {
+            //DerivedClass derivedClass = new DerivedClass();
+            //derivedClass.Print();
+
+            //BaseClass b = new BaseClass();
+            //b.Print();
+
+            BaseClass baseClass = new BaseClass();
+            baseClass.Print();
+
+            baseClass = new DerivedClass();
+            baseClass.Print();
+
+            Console.ReadLine();
+        }
+    }
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4.
+public class ClassA
+    {
+        int n1, n2;
+
+        public ClassA()
+        {
+            Console.WriteLine("I am Base Class Constructor");
+        }
+        public ClassA(int i, int j)
+        {
+            n1 = i;
+            n2 = j;
+            Console.WriteLine("Parameterised Constructor Invoked");
+            Console.WriteLine("Values are " + n1 + " and " +n2);
+        }
+    }
+    public class DerivedClass : ClassA
+    {
+        public DerivedClass(): base () { }
+        public DerivedClass(int i, int j) : base(i, j) { }
+    }
+    class Class3
+    {
+        public static void Main ()
+        {
+            DerivedClass d = new DerivedClass();
+            DerivedClass d2 = new DerivedClass(10,20);
+            Console.ReadLine();
+        }
+    }
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5.Base Derived Class 
+
+namespace Day_4
+{
+    public class ClassA
+    {
+        int n1, n2;
+
+        public ClassA()
+        {
+            Console.WriteLine("I am Base class Constructor");
+        }
+        public ClassA(int i, int j)
+        {
+            n1 = i;
+            n2 = j;
+            Console.WriteLine("Parameterized Constructor Invoked");
+            Console.WriteLine("Values are" + n1 + " and " + n2);
+        }
+
+         public virtual void Swap()
+        {
+            Console.WriteLine("Hi I am swap Function ");
+        }
+    }
+
+    public class DerivedClass : ClassA
+    {
+        public DerivedClass() : base() { }
+        public DerivedClass(int i,int j) : base(i, j) {
+            base.Swap();
+        }
+    }
+    class Class3
+    {
+        public static void Main()
+        {
+            DerivedClass d = new DerivedClass();
+            DerivedClass d2 = new DerivedClass(10, 20);
+            Console.ReadLine();
+        }
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+6.
+class person
+    {
+        public string name;
+        public person(string name)
+        {
+            this.name = name;
+        }
+        public override string ToString()
+        {                                   
+               return name;           
+        }
+        class student : person
+        {
+            public student(string name) : base(name) { }
+            public void study()
+            {
+                Console.WriteLine("The student " +name+ " is studying");
+            }
+        }
+        class teacher : person
+        {
+            public teacher(string name): base(name) { }
+            public void explain()
+            {
+                Console.WriteLine("the teacher " +name+ " is explaining");
+            }
+        }
+        public static void Main()
+        {
+            student s1 = new student("Riya");
+            s1.study();
+
+            teacher t1 = new teacher("Mamta");
+            t1.explain();
+
+            person p1 = new person("Person");
+
+            Console.WriteLine(p1.ToString());
+            Console.ReadLine();
+        }
+    }
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+7.
+class Shape
+    {
+        public double Area()
+        {
+            return 0;
+        }
+        public double Perimeter()
+        {
+            return 0;
+        }
+    }
+    class Rectangle : Shape
+    {
+        double side1, side2;
+        public Rectangle(double side1, double side2)
+        {
+            this.side1 = side1;
+            this.side2 = side2;
+        }
+        public new double Area()
+        {
+            return side1 * side2;
+        }
+        public new double Perimeter()
+        {
+            return (2 * (side1 + side2));
+        }
+    }
+    class Circle : Shape
+    {
+        double radius;
+        public Circle(double radius)
+        {
+            this.radius = radius;
+        }
+        public new double Area()
+        {
+            return ((22 / 7) * (radius * radius));
+        }
+        public new double Perimeter()
+        {
+            return (2 * (22 / 7) * radius);
+        }
+    }
+    class Class5
+    {
+        public static void Main()
+        {
+            Rectangle r = new Rectangle(4.7, 6.5);
+            Console.WriteLine("Area of rectangle:" + r.Area());
+            Console.WriteLine("Perimeter of rectangle:" + r.Perimeter());
+            Console.WriteLine();
+            Circle c = new Circle(6.8);
+            Console.WriteLine("Area of Circle is: " + c.Area());
+            Console.WriteLine("Perimeter of Circle is: " + c.Perimeter());
+            Console.ReadLine();
+        }
+    }
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+8.
+
+namespace Day_4
+{
+    public class Person
+    {
+        public string Name { get; set; }
+        public Person(string Name)
+        {
+            this.Name = Name;
+        }
+        public override string ToString()
+        {
+            return "Hello! My name is "+Name; 
+        }
+        ~Person()
+        {
+            Name = string.Empty;
+        }
+    }
+    public class Teacher:Person
+    {
+        public Teacher(string name):base(name)
+        {
+            Name = name;
+        }
+        public void Explain()
+        {
+            Console.WriteLine("Explain");
+        }
+    }
+    public class Student:Person
+    {
+        public Student(string name) : base(name)
+        {
+            Name = name;
+        }
+        public void Study()
+        {
+            Console.WriteLine("Study");
+        }
+    }
+
+ 
+
+    class Class4
+    {
+        public static void Main()
+        {
+
+ 
+
+            int Total = 3;
+
+ 
+
+            Person[] people = new Person[Total];
+            int[] a = new int[2];
+
+ 
+
+            for (int i = 0; i < Total; i++)
+            {
+                if(i==0)
+                {
+                    people[i] = new Teacher(Console.ReadLine());
+
+ 
+
+                }
+                else
+                {
+                    people[i] = new Student(Console.ReadLine());
+                }
+
+ 
+
+            }
+            for (int i = 0; i < Total; i++)
+            {
+                if(i==0)
+                {
+                    ((Teacher)people[i]).Explain();
+                    float p=(float)a[0];
+                }
+                else
+                {
+                    ((Student)people[i]).Study();
+                }
+            }
+            Console.ReadLine();
+        }
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+
+
+
+
+
+
+
+
+
